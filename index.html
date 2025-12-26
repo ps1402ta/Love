@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Shraddha ❤️</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  background:radial-gradient(circle at top,#ffb6c1,#ff69b4);
+  color:#fff;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+.screen{
+  width:100%;
+  max-width:420px;
+  min-height:100vh;
+  display:none;
+  padding:30px 20px;
+  text-align:center;
+}
+
+.active{display:block;}
+
+h1,h2,p{
+  margin-bottom:16px;
+}
+
+button{
+  padding:12px 22px;
+  border:none;
+  border-radius:30px;
+  background:#fff;
+  color:#ff4081;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  transition:.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+.lock{
+  font-size:60px;
+  margin:20px 0;
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+  100%{transform:scale(1);}
+}
+
+/* typing */
+.typebox{
+  font-size:14.5px;
+  line-height:1.6;
+  text-align:left;
+  white-space:pre-wrap;
+  min-height:280px;
+}
+
+/* cake */
+.cake{
+  position:relative;
+  margin-top:60px;
+}
+
+.layer{
+  width:220px;
+  height:60px;
+  background:#ff8fab;
+  border-radius:12px;
+  margin:auto;
+  box-shadow:0 10px 0 #ff5f95;
+}
+
+.layer.middle{margin-top:-15px;width:180px;}
+.layer.top{margin-top:-15px;width:140px;}
+
+.candle{
+  width:10px;
+  height:40px;
+  background:#fff;
+  margin:0 auto;
+  position:relative;
+  top:-15px;
+}
+
+.flame{
+  width:16px;
+  height:16px;
+  background:gold;
+  border-radius:50%;
+  position:absolute;
+  top:-16px;
+  left:-3px;
+  animation:flicker .3s infinite alternate;
+}
+
+@keyframes flicker{
+  from{transform:scale(1);}
+  to{transform:scale(1.2);}
+}
+
+.fade{
+  animation:fadeout 1.5s forwards;
+}
+
+@keyframes fadeout{
+  to{opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- STEP 1 -->
+<div class="screen active" id="s1">
+  <div class="lock">🔐</div>
+  <h2>This surprise is locked</h2>
+  <p>Only Shraddha can unlock it 💖</p>
+  <button onclick="go(2)">Start Unlocking</button>
+</div>
+
+<!-- STEP 2 -->
+<div class="screen" id="s2">
+  <h2>Tap hearts ❤️</h2>
+  <p>Tap 5 hearts to continue</p>
+  <div id="hearts" style="font-size:30px;">❤️ ❤️ ❤️ ❤️ ❤️</div>
+  <button onclick="go(3)">Continue</button>
+</div>
+
+<!-- STEP 3 -->
+<div class="screen" id="s3">
+  <h2>Some surprises need patience ⏳</h2>
+  <p>Wait 5 seconds…</p>
+  <button id="waitBtn" disabled>Waiting…</button>
+</div>
+
+<!-- STEP 4 -->
+<div class="screen" id="s4">
+  <h2>Before unlocking 💭</h2>
+  <p>Choose one</p>
+  <button onclick="go(5)">Smile 😊</button><br><br>
+  <button onclick="go(5)">Memory 🌙</button><br><br>
+  <button onclick="go(5)">Surprise 🎁</button>
+</div>
+
+<!-- STEP 5 -->
+<div class="screen" id="s5">
+  <h1>Happy Birthday, Shraddha! ❤️</h1>
+  <p>
+Today is all about you, and I hope your day is filled with laughter, love, and all the happiness you bring into my life.
+Thank you for being my sunshine, my support, and my everything.
+May this year bring you closer to all your dreams ✨
+  </p>
+  <button onclick="go(6)">Ready to know cutest memories? 💭</button>
+</div>
+
+<!-- MEMORY PAGE -->
+<div class="screen" id="s6">
+  <div class="typebox" id="typeText"></div>
+  <button onclick="go(7)">Next ➜</button>
+</div>
+
+<!-- BUTKIII PAGE -->
+<div class="screen" id="s7">
+  <h2>Happy Birthday Butkiii 🩷</h2>
+  <p>
+(My one-sided love…)  
+Stay happy.  
+I hope 2026 mein hum saath rahein.  
+Nazar sabse pehle hum dono ko hi lagti hai…  
+bachkar rehna ok butkiii 💫
+  </p>
+  <button onclick="endShow()">The End</button>
+</div>
+
+<!-- FINAL CAKE -->
+<div class="screen" id="s8">
+  <div class="cake">
+    <div class="candle"><div class="flame"></div></div>
+    <div class="layer top"></div>
+    <div class="layer middle"></div>
+    <div class="layer"></div>
+  </div>
+  <p style="margin-top:40px;">🎂❤️</p>
+</div>
+
+<script>
+function go(n){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+}
+
+setTimeout(()=>{
+  document.getElementById('waitBtn').disabled=false;
+  document.getElementById('waitBtn').innerText="I'm Ready 🌸";
+  document.getElementById('waitBtn').onclick=()=>go(4);
+},5000);
+
+// TYPEWRITER
+const msg = `Sun yaar…
+Mujhe pata hai humare beech aaj-kal kuch theek nahi chal raha,
+shayad kuch hai bhi nahi.
+Par main bas itna chahta hoon ki tu jo chahe, wo tujhe mil jaaye.
+Chahe main teri chahne wali list mein hoon ya nahi,
+bas tu hamesha khush rahe 🤍
+
+Pata hai humari starting kahan se hui thi? 😂
+Ek chhoti si meetup…
+June 17 — jab tu mujhe mili thi.
+Aur haan… 1.5 saal ho gaye.
+
+Ly ❤️‍🩹
+Happpppppyyyy Birthday meri Shraddha 🎂❤️`;
+
+let i=0;
+function typeEffect(){
+  if(i<msg.length){
+    document.getElementById('typeText').innerText+=msg.charAt(i);
+    i++;
+    setTimeout(typeEffect,35);
+  }
+}
+
+document.getElementById('s6').addEventListener('click',()=>{
+  if(i===0) typeEffect();
+});
+
+function endShow(){
+  document.getElementById('s7').classList.add('fade');
+  setTimeout(()=>go(8),1500);
+}
+</script>
+
+</body>
+</html>
